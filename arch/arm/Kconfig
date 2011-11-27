@@ -2104,9 +2104,31 @@ config CPU_FREQ_S3C24XX_DEBUG
 	help
 	  Enable s3c_freq_dbg for the Samsung S3C CPUfreq core
 
+config S3C2410_IOTIMING
+	bool "CPUfreq iotiming for Samsung S3C2410 series CPUs"
+	depends on ARCH_S3C2410 && CPU_FREQ && CPU_FREQ_S3C24XX && EXPERIMENTAL
+	help
+	  This enables the CPUfreq driver for the Samsung S3C24XX to change
+	  IO timing according to the CPU frequency.
+
+	  For details, take a look at <file:Documentation/cpu-freq>.
+
+	  If in doubt, say Y.
+
+config S3C2412_IOTIMING
+	bool "CPUfreq iotiming for Samsung S3C2412 series CPUs"
+	depends on ARCH_S3C2412 && CPU_FREQ && CPU_FREQ_S3C24XX && EXPERIMENTAL
+	help
+	  This enables the CPUfreq driver for the Samsung S3C2412 to change
+	  IO timing according to the CPU frequency.
+
+	  For details, take a look at <file:Documentation/cpu-freq>.
+
+	  If in doubt, say Y.
+
 config CPU_FREQ_S3C24XX_IODEBUG
 	bool "Debug CPUfreq Samsung driver IO timing"
-	depends on CPU_FREQ_S3C24XX
+	depends on CPU_FREQ_S3C24XX && (S3C2410_IOTIMING || S3C2412_IOTIMING)
 	help
 	  Enable s3c_freq_iodbg for the Samsung S3C CPUfreq core
 
